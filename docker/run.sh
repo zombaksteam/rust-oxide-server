@@ -47,7 +47,7 @@ do
 		LFNAME="${SERVER_HOST_IP}-${SERVER_HOST_PORT}-$(date '+%FT%T').txt"
 		LFNAME=`echo "$LFNAME" | sed "s/-/_/g"`
 		LFNAME=`echo "$LFNAME" | sed "s/:/_/g"`
-		cat /home/steam/rust/gamelog.txt > /home/steam/rust/Logs/$LFNAME
+		cat /home/steam/rust/gamelog.txt > /home/steam/rust/logs/$LFNAME
 		echo "" > /home/steam/rust/gamelog.txt
 	fi
 
