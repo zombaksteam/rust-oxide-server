@@ -3,11 +3,6 @@
 # Move to server root
 cd /home/steam/rust
 
-# Make dir for binding
-mkdir /home/steam/rust/server
-mkdir /home/steam/rust/server/rust
-mkdir /home/steam/rust/server/rust/cfg
-
 # Need for rust server
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`dirname $0`/RustDedicated_Data/Plugins/x86_64
 
@@ -37,5 +32,19 @@ RUN_CMD="${RUN_CMD} +server.worldsize ${SERVER_WORLD_SIZE}"
 RUN_CMD="${RUN_CMD} +server.seed ${SERVER_SEED}"
 RUN_CMD="${RUN_CMD} +rcon.web 1"
 
-# Start server
-${RUN_CMD} 2>&1 | tee /home/steam/rust/gamelog.txt
+while :
+do
+	# Save and clear logs file
+	if [ -f "/home/steam/rust/gamelog.txt" ]; then
+		LFNAME="${SERVER_HOST_IP}-${SERVER_HOST_PORT}-$(date '+%FT%T').txt"
+		LFNAME=`echo "$LFNAME" | sed "s/-/_/g"`
+		LFNAME=`echo "$LFNAME" | sed "s/:/_/g"`
+		cat /home/steam/rust/gamelog.txt > /home/steam/rust/Logs/$LFNAME
+		echo "" > /home/steam/rust/gamelog.txt
+	fi
+
+	# Start server
+	${RUN_CMD} 2>&1 | tee /home/steam/rust/gamelog.txt
+
+	sleep 1
+done
