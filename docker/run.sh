@@ -32,6 +32,14 @@ RUN_CMD="${RUN_CMD} +server.worldsize ${SERVER_WORLD_SIZE}"
 RUN_CMD="${RUN_CMD} +server.seed ${SERVER_SEED}"
 RUN_CMD="${RUN_CMD} +rcon.web 1"
 
+# Catch Ctrl+C
+NSTOP="0"
+stop_server() {
+	NSTOP="1"
+	echo "Stopping server..."
+}
+trap 'stop_server' SIGINT
+
 while :
 do
 	# Save and clear logs file
@@ -46,5 +54,10 @@ do
 	# Start server
 	${RUN_CMD} 2>&1 | tee /home/steam/rust/gamelog.txt
 
-	sleep 1
+	# Break loop
+	if [ "${NSTOP}" == "1" ]; then
+		break
+	fi
 done
+
+echo "Server is stopped!"

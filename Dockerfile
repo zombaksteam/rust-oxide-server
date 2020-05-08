@@ -17,6 +17,7 @@ ENV SERVER_HOSTNAME=Rust \
 ARG DEBIAN_FRONTEND=noninteractive
 ARG OXIDEMOD_URL=https://umod.org/games/rust/download/develop
 
+USER root
 RUN su - steam -c "mkdir /home/steam/rust/server" && \
 	su - steam -c "mkdir /home/steam/rust/server/rust" && \
 	su - steam -c "mkdir /home/steam/rust/server/rust/cfg" && \
