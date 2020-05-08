@@ -27,7 +27,7 @@ RUN su - steam -c "mkdir /home/steam/rust/server" && \
 	su - steam -c "mkdir /home/steam/rust/plugins" && \
 	su - steam -c "mkdir /home/steam/rust/data" && \
 	su - steam -c "mkdir /home/steam/rust/logs" && \
-	su - steam -c "touch /home/steam/rust/oxide/oxide.config.json" && \
+	su - steam -c "echo "{}" > /home/steam/rust/oxide/oxide.config.json" && \
 	su - steam -c "wget -O /home/steam/rust/oxide.zip ${OXIDEMOD_URL}" && \
 	su - steam -c "unzip -o /home/steam/rust/oxide.zip -d /home/steam/rust" && \
 	su - steam -c "rm -r /home/steam/rust/oxide.zip"
