@@ -17,6 +17,7 @@ MAINTAINER zombaksteam <zombaksteam@gmail.com>
 ARG DEBIAN_FRONTEND=noninteractive
 
 # TODO: Add Oxide here...
+# Create all folders for oxide
 
 # RUN su - steam -c "mkdir /home/steam/rust" && \
 # 	su - steam -c "/home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/steam/rust +app_update 258550 validate +quit"
