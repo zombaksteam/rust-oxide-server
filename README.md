@@ -16,13 +16,22 @@ docker run --rm \
  -e ADMIN_STEAMID="12345678909876543" \
  -e ADMIN_NAME="AdminNickName" \
  -v /etc/timezone:/etc/timezone:ro \
- -it rust-oxide-server:latest
+ -it zombaksteam/rust-oxide-server:latest
 ```
 
 ## How to run server
 
 ```bash
-touch /host-server/oxide.config.json
+mkdir /var/docker/rust
+mkdir /var/docker/rust/logs
+mkdir /var/docker/rust/oxide_config
+mkdir /var/docker/rust/oxide_data
+mkdir /var/docker/rust/oxide_lang
+mkdir /var/docker/rust/oxide_plugins
+mkdir /var/docker/rust/server
+echo "{}" > /var/docker/rust/oxide.config.json
+find /var/docker/rust/ -type d -exec chmod 0777 \{\} \;
+chmod 0666 /var/docker/rust/oxide.config.json
 
 docker run -d \
  --network host \
@@ -39,14 +48,14 @@ docker run -d \
  -e ADMIN_STEAMID="12345678909876543" \
  -e ADMIN_NAME="AdminNickName" \
  -v /etc/timezone:/etc/timezone:ro \
- -v /host-server/logs/:/home/steam/rust/logs/ \
- -v /host-server/oxide_config/:/home/steam/rust/oxide/config/ \
- -v /host-server/oxide_data/:/home/steam/rust/oxide/data/ \
- -v /host-server/oxide_lang/:/home/steam/rust/oxide/lang/ \
- -v /host-server/oxide_plugins/:/home/steam/rust/oxide/plugins/ \
- -v /host-server/server/:/home/steam/rust/server/ \
- -v /host-server/oxide.config.json:/home/steam/rust/oxide/oxide.config.json \
- -it rust-oxide-server:latest
+ -v /var/docker/rust/logs/:/home/steam/rust/logs/ \
+ -v /var/docker/rust/oxide_config/:/home/steam/rust/oxide/config/ \
+ -v /var/docker/rust/oxide_data/:/home/steam/rust/oxide/data/ \
+ -v /var/docker/rust/oxide_lang/:/home/steam/rust/oxide/lang/ \
+ -v /var/docker/rust/oxide_plugins/:/home/steam/rust/oxide/plugins/ \
+ -v /var/docker/rust/server/:/home/steam/rust/server/ \
+ -v /var/docker/rust/oxide.config.json:/home/steam/rust/oxide/oxide.config.json \
+ -it zombaksteam/rust-oxide-server:latest
 ```
 
 ## ENV config variables
