@@ -11,8 +11,7 @@ ENV SERVER_HOSTNAME=Rust \
 	SERVER_SEED=123456789 \
 	SERVER_LEVEL= \
 	SERVER_LEVEL_URL= \
-	ADMIN_STEAMID= \
-	ADMIN_NAME=
+	ADMINS_LIST=
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG OXIDEMOD_URL=https://umod.org/games/rust/download/develop

@@ -17,8 +17,7 @@ docker-test:
 		-e SERVER_HOST_IP="127.0.0.1" \
 		-e SERVER_HOST_PORT="28015" \
 		-e SERVER_WORLD_SIZE="2000" \
-		-e ADMIN_STEAMID="12345678909876543" \
-		-e ADMIN_NAME="AdminNickName" \
+		-e ADMINS_LIST="NickName:12345678909876543" \
 		-v /etc/timezone:/etc/timezone:ro \
 		-it rust-oxide-server:latest
 
